@@ -16608,8 +16608,8 @@ Once you have performed this implementation, the dataset will be stored in the v
 <div class="text_cell_render border-box-sizing rendered_html">
 <p><strong>Answer:</strong>
 Points selected as outliers in the code block above are the ones which have more than 2 outliers. Indices with more than 2 outlier are 66, 75, 142 and 154.</p>
-<p>These points should be removed from the dataset, as they would skew the results. Also, only 1 of all 2 featured outliers have an outlier in the attribute Grocery. All other attributes are independent of each other, so they would result to be inappropriate.</p>
-<p>Data points chosen in the outlier list are the ones which have more than 2 outlier values.</p>
+<p>These points should be removed from the dataset, as they would skew the results. Also, only 1 of all the above outliers has an outlier in the attribute Grocery. All other attributes are independent of each other, so they would result in our clustering to be inappropriate.</p>
+<p>Data points chosen in the outlier list are the ones which have more than 2 outlier values. This would cause these to be double counted in 2 attributes, and would result skew the cluster centers of the respective attributes. This would not produce accurate results. Hence, we would remove them.</p>
 
 </div>
 </div>
@@ -17007,9 +17007,9 @@ As we see dimension 1, it has a very high negative feature weight for detergent 
 <p>DIMENSION 2:
 This dimension has a very high contribution from frozen, delicatessen and fresh items. All items which are not well represented in the first dimension have good representation here. This makes the PCA more thorough, as all features are represented accuractely. All these have high negative feature weights with negligible contribution from other features.</p>
 <p>DIMENSION 3:
-This dimension again captures the same features as the second dimension. Interestingly, we see that the cumulative variance of the second and third dimesnions are almost equal to that of the variance in the first dimension. This shows the PCA equally representation correlated combinations of data, and thus maintaining the underlying trend.</p>
+This dimension again captures the same features as the second dimension. Interestingly, we see that the cumulative variance of the second and third dimesnions are almost equal to that of the variance in the first dimension. This shows the PCA equally representation correlated combinations of data, and thus maintaining the underlying trend. Although, interestingly, we see that the despite pattern being same, there is negative correlation between Delicatessen and other attributes, and Milk and other features. This is not observed in the second dimension. This shows that the magnitude of correlation is high, but if, one feature takes a low value, the inversely correlated feature takes high values.</p>
 <p>DIMENSION 4:
-This dimension has significant representation from Delicatessen and Frozen with little representation from detergents paper. The explained variance of this dimension is relatively low as compared to the earlier 3 dimensions.</p>
+This dimension has significant representation from Delicatessen and Frozen with little representation from detergents paper. Although, the representation between the 2 attributes have inverse feature weights, unlike that in Dimension 2 and DImension 3. This shows that the magnitude of each factor has oposing values i.e. if one attribute has a high value, the other has a low value. The explained variance of this dimension is relatively low as compared to the earlier 3 dimensions.</p>
 
 </div>
 </div>
@@ -19436,7 +19436,8 @@ dtype: int64
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p><strong>Answer:</strong>
-When the delivery service will change from 5 times to 3 times a week, the cutomers who buy in bulk and have larger orders will be affected, as they have a higher daily demand than those who consume less. To decide whether the sompany whould cut their delivery, we should compare, the number of customers and the revenue from them. Dependent on the impact of revenue as compared to the cost cutting of delivering less, the company can make thier decision.</p>
+A/B Testing in this case would be having 2 control groups in which 1 control group will have a 5-day delivery schedule system and the other will have a 3-day delivery schedule. By varying the delivery schedule, we can see which one is more effective for the business. Delivery schedule of 5-days will be more suitable for Cluster 2 stakeholders and the 3-day delivery schedule will be better for Cluster 1 stakeholders. The cost of changing delivery is analysed below, and we can analyse, which will be better for the business.</p>
+<p>When the delivery service will change from 5 times to 3 times a week, the cutomers who buy in bulk and have larger orders will be affected, as they have a higher daily demand than those who consume less. To decide whether the sompany whould cut their delivery, we should compare, the number of customers and the revenue from them. Dependent on the impact of revenue as compared to the cost cutting of delivering less, the company can make thier decision.</p>
 <p>The total sum of all items for consumers in cluster 1, which have lower yearly purchase and thus generate low weekly demand is 6.28 million. These consumers will not be affected if the company switches to supplying every 3 days a week. As thier consumption is low, they can stock products for 2 days if supply frequency is reduced. This will not cause a huge impact. Despite low cumulative purchase, the volume of these customers is high at 260.</p>
 <p>The total sum of all items for consumers in cluster 2 is 8.19 million. These are customers with very high annual puchases, and hence generate more daily demand. With the delivery frequency being reduced, these customers will not be able to fulfil their demands with lower stock and many clients may choose to switch to alternate suppliers.</p>
 <p>The change in delivery frequency will depend on how much cost saving, this will bring. Although as we see that the bulk buying sutomers form majority of the revenue base for this firm, reducing delivery frequency would have large implications on revenue and loss of clients.</p>
